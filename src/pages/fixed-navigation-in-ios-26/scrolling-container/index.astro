@@ -18,7 +18,7 @@ import "@/styles/style.css";
       <div class="main-content">
         <h1>Scrolling container</h1>
 
-        <h2>Lorem ipsum</h2>
+        <h2>position: relative and controling scroll position / height</h2>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam,
           ducimus cum commodi delectus ullam molestias harum. Cumque numquam,
@@ -144,7 +144,12 @@ import "@/styles/style.css";
 
 <style scoped>
   dialog {
-    all: unset;
+    border: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    max-width: none;
+    max-height: none;
   }
   dialog::backdrop {
     all: unset;
@@ -208,10 +213,8 @@ import "@/styles/style.css";
     justify-content: center;
     position: sticky;
     top: 0;
-    left: 0;
-    right: 0;
     height: 4rem;
-    background: var(--mustard-200);
+    /* background: var(--mustard-200); */
   }
 
   .fixed-navigation-item {

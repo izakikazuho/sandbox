@@ -1,0 +1,206 @@
+---
+import "@/styles/style.css";
+---
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Normal</title>
+  </head>
+  <body>
+    <header>
+      <button id="open-dialog-button">Open Dialog</button>
+    </header>
+    <div class="main-content">
+      <h1>Normal</h1>
+
+      <h2>position: fixed + added blur layer to body</h2>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam,
+        ducimus cum commodi delectus ullam molestias harum. Cumque numquam,
+        repellendus ducimus dolor quia veritatis voluptatem nemo nam? Eligendi
+        officia saepe corrupti voluptatem nobis id error optio, explicabo a
+        minima laboriosam tenetur, earum quos laborum perferendis.
+        Exercitationem voluptate eos possimus distinctio modi aliquam
+        reprehenderit commodi, vero nisi dolorum temporibus optio expedita
+        labore? Magnam, corporis voluptatem modi incidunt rem explicabo expedita
+        minus maxime provident consequuntur odit, distinctio assumenda corrupti
+        repudiandae aut quae, magni natus. Animi ad obcaecati porro aperiam
+        tenetur. Vitae est ipsum veniam deserunt fuga ipsam maiores saepe
+        labore, sed blanditiis pariatur, unde ab enim alias voluptatem id
+        voluptas dolor asperiores eaque explicabo voluptates quidem! Ratione
+        tempore quidem reprehenderit doloribus culpa molestiae, illum nostrum
+        doloremque sequi ducimus modi enim sed accusantium nihil in, animi
+        delectus a debitis quia impedit? Doloremque voluptas amet natus suscipit
+        distinctio repellat, mollitia soluta officiis? Vitae explicabo porro
+        sunt asperiores magni consequatur tempora inventore ut rem, dicta unde,
+        nobis ratione quaerat aliquam molestiae esse? Aut iste, deleniti, error
+        voluptatem iure nisi et nihil quae quibusdam fugit blanditiis aperiam
+        sit. Ipsa laborum dolorum ducimus recusandae rem debitis quia eum
+        provident perferendis blanditiis, voluptatem magni ea quae. Quod culpa
+        rerum eius! Exercitationem esse atque debitis natus sequi quo quaerat?
+        Molestiae ipsam reprehenderit, saepe vitae voluptatum corrupti ducimus
+        ex numquam itaque corporis totam ullam eligendi possimus dolore ea
+        magnam fugiat dolores commodi impedit cum expedita. Suscipit labore
+        natus veritatis aspernatur mollitia pariatur laboriosam fugit
+        perspiciatis alias tempora, quia error nisi vitae asperiores sit
+        accusamus doloremque totam, beatae distinctio quaerat omnis ad? Corporis
+        atque ex unde consectetur nam voluptas modi optio porro quas. Suscipit
+        modi incidunt cupiditate voluptates fuga vel exercitationem id
+        praesentium delectus dolor harum ducimus consectetur aliquid culpa cum
+        eligendi, blanditiis voluptatem doloremque odio ullam dicta veritatis
+        libero. Odio veritatis velit eos, dolores earum dolorem doloremque,
+        eligendi architecto fuga laudantium deserunt minus! Fuga reprehenderit
+        omnis voluptas ullam! Adipisci aliquam ullam sunt incidunt, molestias
+        ipsum cum consequatur reprehenderit sequi aut exercitationem id, earum
+        temporibus nostrum, harum ducimus necessitatibus fugit pariatur enim
+        nisi saepe impedit? Libero cumque, minima maxime cum praesentium modi.
+        At quod distinctio, vero amet, blanditiis assumenda nemo labore
+        reiciendis reprehenderit nobis sint. Enim ratione vel est, sapiente
+        voluptas quam eius assumenda corrupti, consequuntur, id eligendi
+        perferendis porro tempore earum! Quas, deleniti molestias laboriosam
+        beatae at numquam ipsa ullam nisi fuga atque odit cumque veritatis ex
+        harum culpa nulla corrupti aperiam vitae voluptates incidunt? Impedit
+        deserunt provident distinctio ad ducimus tempora molestias quam velit
+        quisquam nemo veritatis iste eius inventore delectus ea dolorum magnam
+        maxime laudantium soluta expedita nesciunt, libero totam officiis
+        temporibus. Possimus quaerat fugiat sapiente similique, eius autem a
+        aliquid ut quo ducimus, facilis harum omnis, officiis eos ipsum earum
+        quae repellendus doloremque dolorum? Facere quis molestiae atque debitis
+        corrupti doloremque commodi quia eligendi. Dicta neque nemo consequuntur
+        a ex qui, tempora pariatur aperiam, asperiores odio similique quibusdam
+        tempore ut rerum quas optio id aliquam? Atque, nobis corrupti, porro
+        possimus ab numquam, quaerat deserunt omnis nesciunt earum iusto.
+      </p>
+    </div>
+    <dialog id="dialog" class="fixed-navigation">
+      <div id="dialog-scroll-container" class="fixed-navigation-content">
+        <div class="fixed-navigation-header">
+          <button id="close-dialog-button">Close Dialog</button>
+        </div>
+        <h2>Navigation</h2>
+        <nav>
+          <ul>
+            {
+              Array.from({ length: 20 }).map((_, index) => (
+                <li>
+                  <a class="fixed-navigation-item" href="/">
+                    NAV ITEM {index + 1}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </nav>
+      </div>
+    </dialog>
+  </body>
+
+  <script>
+    let lastScrollY = 0;
+
+    const openDialogButton = document.querySelector(
+      "#open-dialog-button"
+    ) as HTMLButtonElement;
+    const closeDialogButton = document.querySelector(
+      "#close-dialog-button"
+    ) as HTMLButtonElement;
+    const dialog = document.querySelector("#dialog") as HTMLDialogElement;
+    const dialogScrollContainer = document.querySelector(
+      "#dialog-scroll-container"
+    ) as HTMLDivElement;
+
+    if (openDialogButton && dialog) {
+      openDialogButton.addEventListener("click", () => {
+        dialog.showModal();
+        window.scrollTo({ top: 0 });
+      });
+    }
+
+    if (closeDialogButton && dialog) {
+      closeDialogButton.addEventListener("click", () => {
+        dialog.close();
+        window.scrollTo({ top: lastScrollY });
+      });
+    }
+
+    window.addEventListener("scroll", () => {
+      const currentScrollY = window.scrollY;
+      if (!dialog.open) {
+        lastScrollY = currentScrollY;
+      }
+    });
+
+    console.log(lastScrollY);
+  </script>
+</html>
+
+<style scoped>
+  dialog {
+    border: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    max-width: none;
+    max-height: none;
+  }
+  dialog::backdrop {
+    all: unset;
+  }
+  body {
+    position: relative;
+    margin: 0;
+  }
+  body:has(dialog[open])::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    backdrop-filter: blur(8px);
+  }
+
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4rem;
+    background: var(--mustard-200);
+  }
+  .main-content {
+    flex: 1;
+    padding: 1rem;
+  }
+
+  .fixed-navigation {
+    background: var(--turquoise-400);
+    width: 100%;
+    height: 100%;
+    overscroll-behavior: contain;
+  }
+
+  .fixed-navigation-content {
+    width: 100%;
+  }
+  .fixed-navigation-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4rem;
+    /* background: var(--mustard-200); */
+  }
+
+  .fixed-navigation-item {
+    display: block;
+    padding-block: 1rem;
+  }
+</style>
